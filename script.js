@@ -142,29 +142,47 @@ function playKannadaTrack(trackNum, title, artist, videoId) {
     songLink.style.display = 'inline-flex';
   }
 
-  // Stop previous local audio if active
+  // Stop previous audio if active
   if (currentLocalAudio) {
     currentLocalAudio.pause();
     currentLocalAudio = null;
   }
+  if (frame) { frame.src = ''; }
+  if (wrapper) wrapper.style.display = 'none';
 
-  // Check if local MP3 file exists (audio/song1.mp3 ... song5.mp3)
-  const localAudioPath = `audio/song${trackNum}.mp3`;
-  const testAudio = new Audio(localAudioPath);
+  // Try direct audio files (webm, mp3, m4a)
+  const formats = [
+    `audio/song${trackNum}.webm`,
+    `audio/song${trackNum}.mp3`,
+    `audio/song${trackNum}.m4a`
+  ];
 
-  testAudio.play().then(() => {
-    // MP3 file exists & plays directly!
-    currentLocalAudio = testAudio;
-    if (wrapper) wrapper.style.display = 'none';
-    isAudioPlaying = true;
-  }).catch(() => {
-    // Load embedded player for exact video ID
-    if (wrapper) wrapper.style.display = 'block';
-    if (frame) {
-      frame.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&playsinline=1&enablejsapi=1&rel=0&modestbranding=1`;
+  let formatIndex = 0;
+  function tryNextAudio() {
+    if (formatIndex >= formats.length) {
+      // Fallback to embedded player if local file blocked
+      if (wrapper) wrapper.style.display = 'block';
+      if (frame) {
+        frame.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&playsinline=1&enablejsapi=1&rel=0&modestbranding=1`;
+      }
+      isAudioPlaying = true;
+      return;
     }
-    isAudioPlaying = true;
-  });
+
+    const testAudio = new Audio(formats[formatIndex]);
+    testAudio.play().then(() => {
+      currentLocalAudio = testAudio;
+      isAudioPlaying = true;
+      testAudio.onended = () => {
+        ytStop();
+      };
+    }).catch(() => {
+      formatIndex++;
+      tryNextAudio();
+    });
+  }
+
+  tryNextAudio();
 
   // Highlight active track item
   document.querySelectorAll('.track-item').forEach((item, idx) => {
