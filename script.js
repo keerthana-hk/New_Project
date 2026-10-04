@@ -113,147 +113,57 @@ function startOurJourney() {
 
 
 
-// -------- NATIVE DIRECT AUDIO & SYNTH JUKEBOX ENGINE --------
+// -------- KANNADA SOUNDTRACK JUKEBOX ENGINE --------
 let isAudioPlaying = false;
 let currentLocalAudio = null;
-let currentTrackNum = 0;
-let audioCtx = null;
-let synthTimers = [];
 
-function getAudioCtx() {
-  if (!audioCtx) {
-    const AudioContextClass = window.AudioContext || window.webkitAudioContext;
-    if (AudioContextClass) audioCtx = new AudioContextClass();
-  }
-  if (audioCtx && audioCtx.state === 'suspended') {
-    audioCtx.resume();
-  }
-  return audioCtx;
-}
-
-function stopSynthMelody() {
-  synthTimers.forEach(t => clearTimeout(t));
-  synthTimers = [];
-}
-
-function playSynthNote(freq, type = 'sine', duration = 0.45, timeOffset = 0, volume = 0.15) {
-  const ctx = getAudioCtx();
-  if (!ctx) return;
-  try {
-    const osc = ctx.createOscillator();
-    const gain = ctx.createGain();
-    osc.type = type;
-    osc.frequency.setValueAtTime(freq, ctx.currentTime + timeOffset);
-
-    gain.gain.setValueAtTime(0.001, ctx.currentTime + timeOffset);
-    gain.gain.linearRampToValueAtTime(volume, ctx.currentTime + timeOffset + 0.04);
-    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + timeOffset + duration);
-
-    osc.connect(gain);
-    gain.connect(ctx.destination);
-
-    osc.start(ctx.currentTime + timeOffset);
-    osc.stop(ctx.currentTime + timeOffset + duration);
-  } catch (e) {}
-}
-
-const synthMelodies = {
-  1: [ // Kavithe Kavithe — Romantic Flute/Synth Melody
-    { n: 261.63, d: 0.5 }, { n: 329.63, d: 0.5 }, { n: 392.00, d: 0.5 }, { n: 523.25, d: 0.9 },
-    { n: 440.00, d: 0.5 }, { n: 392.00, d: 0.5 }, { n: 329.63, d: 0.5 }, { n: 293.66, d: 0.9 },
-    { n: 349.23, d: 0.5 }, { n: 392.00, d: 0.5 }, { n: 440.00, d: 0.5 }, { n: 523.25, d: 0.9 },
-    { n: 493.88, d: 0.5 }, { n: 440.00, d: 0.5 }, { n: 392.00, d: 0.5 }, { n: 329.63, d: 1.2 }
-  ],
-  2: [ // Happy (AllOk) — Upbeat Dance Arpeggio
-    { n: 523.25, d: 0.25 }, { n: 523.25, d: 0.25 }, { n: 659.25, d: 0.25 }, { n: 783.99, d: 0.5 },
-    { n: 659.25, d: 0.25 }, { n: 783.99, d: 0.25 }, { n: 880.00, d: 0.5 }, { n: 783.99, d: 0.5 },
-    { n: 659.25, d: 0.25 }, { n: 523.25, d: 0.25 }, { n: 587.33, d: 0.5 }, { n: 523.25, d: 0.9 }
-  ],
-  3: [ // Friendship — Heartfelt Acoustic Anthem
-    { n: 392.00, d: 0.6 }, { n: 440.00, d: 0.4 }, { n: 523.25, d: 0.6 }, { n: 587.33, d: 0.6 },
-    { n: 659.25, d: 0.8 }, { n: 587.33, d: 0.4 }, { n: 523.25, d: 0.6 }, { n: 440.00, d: 0.8 },
-    { n: 523.25, d: 0.6 }, { n: 659.25, d: 0.6 }, { n: 783.99, d: 1.3 }
-  ],
-  4: [ // Lokada Kalaji — Folk Rhythm Strumming
-    { n: 329.63, d: 0.35 }, { n: 392.00, d: 0.35 }, { n: 440.00, d: 0.35 }, { n: 493.88, d: 0.55 },
-    { n: 440.00, d: 0.35 }, { n: 392.00, d: 0.35 }, { n: 329.63, d: 0.55 }, { n: 293.66, d: 0.55 },
-    { n: 329.63, d: 0.35 }, { n: 392.00, d: 0.35 }, { n: 440.00, d: 0.75 }
-  ],
-  5: [ // Nee Sigoovaregu — Expressive Soaring Ballad
-    { n: 440.00, d: 0.7 }, { n: 523.25, d: 0.5 }, { n: 659.25, d: 0.7 }, { n: 783.99, d: 0.9 },
-    { n: 698.46, d: 0.5 }, { n: 659.25, d: 0.5 }, { n: 587.33, d: 0.7 }, { n: 523.25, d: 1.4 }
-  ]
-};
-
-function startSynthLoop(trackNum) {
-  stopSynthMelody();
-  const sequence = synthMelodies[trackNum] || synthMelodies[1];
-  let accumulatedTime = 0;
-
-  function scheduleSequence() {
-    accumulatedTime = 0;
-    sequence.forEach(item => {
-      const t = setTimeout(() => {
-        if (isAudioPlaying) {
-          playSynthNote(item.n, 'triangle', item.d, 0, 0.18);
-          // Play harmonic bass note
-          playSynthNote(item.n / 2, 'sine', item.d * 1.2, 0, 0.12);
-        }
-      }, accumulatedTime * 1000);
-      synthTimers.push(t);
-      accumulatedTime += item.d;
-    });
-
-    // Loop sequence continuously
-    const loopTimer = setTimeout(() => {
-      if (isAudioPlaying && !currentLocalAudio) {
-        scheduleSequence();
-      }
-    }, accumulatedTime * 1000);
-    synthTimers.push(loopTimer);
-  }
-
-  scheduleSequence();
-}
-
-function playKannadaTrack(trackNum, title, artist) {
-  currentTrackNum = trackNum;
+function playKannadaTrack(trackNum, title, artist, videoId) {
   const titleEl = document.getElementById('nowPlayingTitle');
   const artistEl = document.getElementById('nowPlayingArtist');
   const badgeEl = document.getElementById('nowPlayingBadge');
   const vinylEl = document.getElementById('vinylDisc');
   const eqEl = document.getElementById('equalizer');
+  const frame = document.getElementById('activeMusicFrame');
+  const wrapper = document.getElementById('playerFrameWrapper');
   const dot = document.getElementById('ytStatusDot');
   const btn = document.getElementById('ytPlayPauseBtn');
+  const songLink = document.getElementById('directSongLink');
 
   if (titleEl) titleEl.textContent = title;
   if (artistEl) artistEl.textContent = artist;
+  if (badgeEl) badgeEl.textContent = '♫ NOW PLAYING';
   if (vinylEl) vinylEl.classList.add('vinyl-spinning');
   if (eqEl) eqEl.classList.remove('hidden');
   if (dot) { dot.style.background = '#22c55e'; dot.style.boxShadow = '0 0 10px #22c55e'; }
   if (btn) btn.innerHTML = '&#9646;&#9646;';
 
-  // Stop previous local audio and synth
+  if (songLink) {
+    songLink.href = `https://www.youtube.com/watch?v=${videoId}`;
+    songLink.style.display = 'inline-flex';
+  }
+
+  // Stop previous local audio if active
   if (currentLocalAudio) {
     currentLocalAudio.pause();
     currentLocalAudio = null;
   }
-  stopSynthMelody();
-
-  isAudioPlaying = true;
 
   // Check if local MP3 file exists (audio/song1.mp3 ... song5.mp3)
   const localAudioPath = `audio/song${trackNum}.mp3`;
   const testAudio = new Audio(localAudioPath);
 
   testAudio.play().then(() => {
-    // MP3 file found & playing!
+    // MP3 file exists & plays directly!
     currentLocalAudio = testAudio;
-    if (badgeEl) badgeEl.textContent = '♫ NOW PLAYING (AUDIO FILE)';
+    if (wrapper) wrapper.style.display = 'none';
+    isAudioPlaying = true;
   }).catch(() => {
-    // MP3 file not found or empty — play Web Audio Melodic Synth!
-    if (badgeEl) badgeEl.textContent = '♫ NOW PLAYING (DIRECT MELODY)';
-    startSynthLoop(trackNum);
+    // Load embedded player for exact video ID
+    if (wrapper) wrapper.style.display = 'block';
+    if (frame) {
+      frame.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&playsinline=1&enablejsapi=1&rel=0&modestbranding=1`;
+    }
+    isAudioPlaying = true;
   });
 
   // Highlight active track item
@@ -262,65 +172,46 @@ function playKannadaTrack(trackNum, title, artist) {
   });
 }
 
-function loadCustomMP3(event) {
-  const file = event.target.files[0];
-  if (!file) return;
-
-  if (currentLocalAudio) {
-    currentLocalAudio.pause();
-    currentLocalAudio = null;
-  }
-  stopSynthMelody();
-
-  const fileUrl = URL.createObjectURL(file);
-  const audio = new Audio(fileUrl);
-  currentLocalAudio = audio;
-  isAudioPlaying = true;
-
-  audio.play().then(() => {
-    const titleEl = document.getElementById('nowPlayingTitle');
-    const artistEl = document.getElementById('nowPlayingArtist');
-    const badgeEl = document.getElementById('nowPlayingBadge');
-    const vinylEl = document.getElementById('vinylDisc');
-    const eqEl = document.getElementById('equalizer');
-    const dot = document.getElementById('ytStatusDot');
-    const btn = document.getElementById('ytPlayPauseBtn');
-
-    if (titleEl) titleEl.textContent = file.name;
-    if (artistEl) artistEl.textContent = 'Custom Device Track';
-    if (badgeEl) badgeEl.textContent = '♫ NOW PLAYING (YOUR MP3)';
-    if (vinylEl) vinylEl.classList.add('vinyl-spinning');
-    if (eqEl) eqEl.classList.remove('hidden');
-    if (dot) { dot.style.background = '#22c55e'; dot.style.boxShadow = '0 0 10px #22c55e'; }
-    if (btn) btn.innerHTML = '&#9646;&#9646;';
-  });
-}
-
 function ytTogglePlay() {
+  const frame = document.getElementById('activeMusicFrame');
   const vinyl = document.getElementById('vinylDisc');
   const btn = document.getElementById('ytPlayPauseBtn');
   const dot = document.getElementById('ytStatusDot');
 
+  if (currentLocalAudio) {
+    if (isAudioPlaying) {
+      currentLocalAudio.pause();
+      isAudioPlaying = false;
+      if (btn) btn.innerHTML = '&#9654;';
+      if (vinyl) vinyl.classList.remove('vinyl-spinning');
+      if (dot) { dot.style.background = '#374151'; dot.style.boxShadow = 'none'; }
+    } else {
+      currentLocalAudio.play();
+      isAudioPlaying = true;
+      if (btn) btn.innerHTML = '&#9646;&#9646;';
+      if (vinyl) vinyl.classList.add('vinyl-spinning');
+      if (dot) { dot.style.background = '#22c55e'; dot.style.boxShadow = '0 0 10px #22c55e'; }
+    }
+    return;
+  }
+
+  if (!frame || !frame.src) return;
+
   if (isAudioPlaying) {
-    if (currentLocalAudio) currentLocalAudio.pause();
-    stopSynthMelody();
+    frame.dataset.savedSrc = frame.src;
+    frame.src = '';
     isAudioPlaying = false;
     if (btn) btn.innerHTML = '&#9654;';
     if (vinyl) vinyl.classList.remove('vinyl-spinning');
     if (dot) { dot.style.background = '#374151'; dot.style.boxShadow = 'none'; }
   } else {
+    if (frame.dataset.savedSrc) {
+      frame.src = frame.dataset.savedSrc;
+    }
     isAudioPlaying = true;
     if (btn) btn.innerHTML = '&#9646;&#9646;';
     if (vinyl) vinyl.classList.add('vinyl-spinning');
     if (dot) { dot.style.background = '#22c55e'; dot.style.boxShadow = '0 0 10px #22c55e'; }
-
-    if (currentLocalAudio) {
-      currentLocalAudio.play();
-    } else if (currentTrackNum > 0) {
-      startSynthLoop(currentTrackNum);
-    } else {
-      playKannadaTrack(1, 'Kavithe Kavithe 🎵', 'Yuva — Sanjith Hegde & Ajaneesh Loknath');
-    }
   }
 }
 
@@ -329,9 +220,8 @@ function ytStop() {
     currentLocalAudio.pause();
     currentLocalAudio = null;
   }
-  stopSynthMelody();
-  isAudioPlaying = false;
 
+  const frame = document.getElementById('activeMusicFrame');
   const vinyl = document.getElementById('vinylDisc');
   const eq = document.getElementById('equalizer');
   const badge = document.getElementById('nowPlayingBadge');
@@ -339,7 +229,10 @@ function ytStop() {
   const artist = document.getElementById('nowPlayingArtist');
   const dot = document.getElementById('ytStatusDot');
   const btn = document.getElementById('ytPlayPauseBtn');
+  const songLink = document.getElementById('directSongLink');
 
+  if (frame) { frame.src = ''; frame.dataset.savedSrc = ''; }
+  isAudioPlaying = false;
   if (btn) btn.innerHTML = '&#9654;';
   if (vinyl) vinyl.classList.remove('vinyl-spinning');
   if (eq) eq.classList.add('hidden');
@@ -347,6 +240,7 @@ function ytStop() {
   if (badge) badge.textContent = 'JUKEBOX READY';
   if (title) title.textContent = 'Select a Kannada Song Below 🎧';
   if (artist) artist.textContent = '5 Curated Kannada Tracks for Rakii\'s Birthday';
+  if (songLink) songLink.style.display = 'none';
   document.querySelectorAll('.track-item').forEach(i => i.classList.remove('playing-track'));
 }
 

@@ -688,11 +688,8 @@
   <!-- ========== SECTION 9: KANNADA SOUNDTRACK JUKEBOX ========== -->
   <section id="section9" class="section theme-soundtrack reveal-section">
     <div class="section-inner">
-      <h2 class="section-title">Kannada Soundtrack 🎵<br /><em>Native Direct Audio Player</em></h2>
-      <p class="section-subtitle">Plays direct audio &amp; Kannada melodies instantly — no YouTube needed! 🎧</p>
-
-      <!-- Hidden File Picker for Custom Local Audio -->
-      <input type="file" id="customAudioInput" accept="audio/*" style="display:none;" onchange="loadCustomMP3(event)" />
+      <h2 class="section-title">Kannada Soundtrack 🎵<br /><em>Play songs right here!</em></h2>
+      <p class="section-subtitle">Click any track below to play exact Kannada songs live 🎧</p>
 
       <div class="jukebox-container">
         <!-- Player Display Card -->
@@ -705,10 +702,15 @@
             <h3 id="nowPlayingTitle">Select a Kannada Song Below &#x1F3A7;</h3>
             <p id="nowPlayingArtist">5 Curated Kannada Tracks for Rakii's Birthday</p>
 
-            <!-- Audio Controls -->
-            <div class="audio-controls-wrap" style="display:flex; align-items:center; gap:12px; margin-top:18px; flex-wrap:wrap;">
+            <!-- Audio Player Frame Container -->
+            <div id="playerFrameWrapper" style="display:none; margin-top:14px; border-radius:12px; overflow:hidden; border:1px solid rgba(255,215,0,0.5);">
+              <iframe id="activeMusicFrame" width="100%" height="180" src="" title="Kannada Song Audio" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            </div>
+
+            <!-- Audio Controls & Direct App Button -->
+            <div class="audio-controls-wrap" style="display:flex; align-items:center; gap:12px; margin-top:16px; flex-wrap:wrap;">
               <button id="ytPlayPauseBtn" onclick="ytTogglePlay()"
-                style="background:linear-gradient(135deg,#6b21a8,#312e81); border:2px solid #ffd700; color:#ffd700; font-size:1.4rem; width:50px; height:50px; border-radius:50%; cursor:pointer; transition:all 0.3s; flex-shrink:0;" title="Play / Pause">
+                style="background:linear-gradient(135deg,#6b21a8,#312e81); border:2px solid #ffd700; color:#ffd700; font-size:1.4rem; width:48px; height:48px; border-radius:50%; cursor:pointer; transition:all 0.3s; flex-shrink:0;" title="Play / Pause">
                 &#9654;
               </button>
               <button onclick="ytStop()"
@@ -717,9 +719,9 @@
               </button>
               <div id="ytStatusDot" style="width:12px; height:12px; border-radius:50%; background:#374151; transition:all 0.4s; flex-shrink:0;" title="Playing status"></div>
 
-              <button onclick="document.getElementById('customAudioInput').click()" style="margin-left:auto; background:rgba(234,179,8,0.18); border:1.5px solid #eab308; color:#fde047; padding:8px 16px; border-radius:20px; font-size:0.85rem; font-weight:700; cursor:pointer; transition:all 0.3s;" onmouseover="this.style.background='#eab308';this.style.color='#000';" onmouseout="this.style.background='rgba(234,179,8,0.18)';this.style.color='#fde047';">
-                📁 Play Any MP3 File
-              </button>
+              <a id="directSongLink" href="#" target="_blank" style="display:none; margin-left:auto; background:rgba(220,38,38,0.25); border:1.5px solid #ef4444; color:#fca5a5; padding:8px 16px; border-radius:20px; font-size:0.85rem; font-weight:700; text-decoration:none; transition:all 0.3s;" onmouseover="this.style.background='#ef4444';this.style.color='#fff';" onmouseout="this.style.background='rgba(220,38,38,0.25)';this.style.color='#fca5a5';">
+                📱 Open on YouTube App
+              </a>
             </div>
 
             <!-- Equalizer Bars -->
@@ -731,7 +733,7 @@
 
         <!-- Track List -->
         <div class="track-list">
-          <div class="track-item" onclick="playKannadaTrack(1, 'Kavithe Kavithe 🎵', 'Yuva — Sanjith Hegde & Ajaneesh Loknath')">
+          <div class="track-item" onclick="playKannadaTrack(1, 'Kavithe Kavithe 🎵', 'Yuva — Sanjith Hegde & Ajaneesh Loknath', '3EKlHJKaUF4')">
             <div class="track-num">01</div>
             <div class="track-details">
               <h4>Kavithe Kavithe 🎵</h4>
@@ -740,7 +742,7 @@
             <button class="track-play-btn">&#9654; Play Song</button>
           </div>
 
-          <div class="track-item" onclick="playKannadaTrack(2, 'Happy 😊', 'AllOk — Kannada Hit Album')">
+          <div class="track-item" onclick="playKannadaTrack(2, 'Happy 😊', 'AllOk — Kannada Hit Album', 'hRkc-OPHApY')">
             <div class="track-num">02</div>
             <div class="track-details">
               <h4>Happy 😊</h4>
@@ -749,7 +751,7 @@
             <button class="track-play-btn">&#9654; Play Song</button>
           </div>
 
-          <div class="track-item" onclick="playKannadaTrack(3, 'Friendship 🤝', 'Lucky Man — Dr. Puneeth Rajkumar')">
+          <div class="track-item" onclick="playKannadaTrack(3, 'Friendship 🤝', 'Lucky Man — Dr. Puneeth Rajkumar', 'sxnnOYqToIU')">
             <div class="track-num">03</div>
             <div class="track-details">
               <h4>Friendship 🤝</h4>
@@ -758,7 +760,7 @@
             <button class="track-play-btn">&#9654; Play Song</button>
           </div>
 
-          <div class="track-item" onclick="playKannadaTrack(4, 'Lokada Kalaji 🌍', 'The Raghu Dixit Project')">
+          <div class="track-item" onclick="playKannadaTrack(4, 'Lokada Kalaji 🌍', 'The Raghu Dixit Project', 'e4h0VoZpdI8')">
             <div class="track-num">04</div>
             <div class="track-details">
               <h4>Lokada Kalaji 🌍</h4>
@@ -767,7 +769,7 @@
             <button class="track-play-btn">&#9654; Play Song</button>
           </div>
 
-          <div class="track-item" onclick="playKannadaTrack(5, 'Nee Sigoovaregu 💫', 'Bhajarangi 2 — Sid Sriram')">
+          <div class="track-item" onclick="playKannadaTrack(5, 'Nee Sigoovaregu 💫', 'Bhajarangi 2 — Sid Sriram', '5tfNL9jUksg')">
             <div class="track-num">05</div>
             <div class="track-details">
               <h4>Nee Sigoovaregu 💫</h4>
