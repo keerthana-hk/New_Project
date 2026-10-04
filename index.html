@@ -1,0 +1,1244 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>New Project</title>
+  <meta name="description" content="New Project Workspace" />
+  <link rel="icon" type="image/png"
+    href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" />
+  <link rel="shortcut icon" type="image/png"
+    href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inter:wght@300;400;500;600;700&family=Noto+Sans+Kannada:wght@300;400;500;600;700&family=Dancing+Script:wght@400;600;700&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css?v=4" />
+  <style>
+    /* ====== NICKNAME BATTLE SECTION — FORCE OVERRIDE ====== */
+    #section2 {
+      background: rgba(10, 0, 18, 0.50) !important;
+      position: relative !important;
+      overflow: hidden !important;
+      border-top: none !important;
+    }
+
+    #section2::before {
+      content: '' !important;
+      position: absolute !important;
+      inset: 0 !important;
+      background: radial-gradient(ellipse at 65% 30%, rgba(61, 16, 79, 0.52) 0%, rgba(40, 10, 58, 0.50) 22%, rgba(22, 0, 34, 0.50) 48%, rgba(10, 0, 20, 0.48) 72%, rgba(6, 0, 9, 0.45) 100%) !important;
+      z-index: 0 !important;
+      pointer-events: none !important;
+    }
+
+    #section2 .section-inner {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Title */
+    #section2 .nickname-battle-title {
+      font-size: clamp(2.6rem, 6vw, 4.2rem) !important;
+      font-weight: 900 !important;
+      color: #ffffff !important;
+      letter-spacing: -0.01em !important;
+      margin-bottom: 48px !important;
+    }
+
+    /* Battle Cards */
+    #section2 .battle-card {
+      background: rgba(28, 12, 46, 0.92) !important;
+      border-radius: 28px !important;
+      padding: 36px 28px !important;
+      backdrop-filter: blur(20px) !important;
+      max-width: 380px !important;
+      min-width: 260px !important;
+    }
+
+    #section2 .card-kulli {
+      border: 2px solid rgba(236, 72, 153, 0.6) !important;
+      box-shadow: 0 20px 55px rgba(0, 0, 0, 0.7), 0 0 40px rgba(236, 72, 153, 0.2) !important;
+    }
+
+    #section2 .card-rakii {
+      border: 2px solid rgba(234, 179, 8, 0.6) !important;
+      box-shadow: 0 20px 55px rgba(0, 0, 0, 0.7), 0 0 40px rgba(234, 179, 8, 0.2) !important;
+    }
+
+    #section2 .battle-icon {
+      font-size: 3.8rem !important;
+      margin-bottom: 18px !important;
+      display: block !important;
+    }
+
+    #section2 .battle-label {
+      font-size: 0.76rem !important;
+      font-weight: 700 !important;
+      letter-spacing: 0.18em !important;
+      color: rgba(190, 170, 220, 0.95) !important;
+      margin-bottom: 20px !important;
+      text-transform: uppercase !important;
+    }
+
+    #section2 .battle-sub {
+      color: rgba(220, 210, 240, 0.8) !important;
+      font-style: italic !important;
+      font-size: 0.88rem !important;
+    }
+
+    /* Pills */
+    #section2 .pill {
+      padding: 7px 20px !important;
+      border-radius: 22px !important;
+      font-size: 0.95rem !important;
+      font-weight: 700 !important;
+    }
+
+    #section2 .pill-pink {
+      color: #f9a8d4 !important;
+      background: rgba(236, 72, 153, 0.15) !important;
+      border: 1.5px solid rgba(236, 72, 153, 0.7) !important;
+    }
+
+    #section2 .pill-gold {
+      color: #fde68a !important;
+      background: rgba(234, 179, 8, 0.15) !important;
+      border: 1.5px solid rgba(234, 179, 8, 0.7) !important;
+    }
+
+    /* VS divider */
+    #section2 .vs-text {
+      font-size: 2.8rem !important;
+      font-weight: 900 !important;
+      color: #fff !important;
+      text-shadow: 0 0 30px rgba(255, 255, 255, 0.9) !important;
+      letter-spacing: 0.1em !important;
+    }
+
+    #section2 .vs-flash {
+      font-size: 1.5rem !important;
+      color: #f97316 !important;
+      filter: drop-shadow(0 0 8px rgba(249, 115, 22, 0.9)) !important;
+    }
+
+    /* Quote Banner */
+    #section2 .nickname-quote-banner {
+      background: rgba(22, 10, 6, 0.88) !important;
+      border: 2px solid rgba(234, 179, 8, 0.5) !important;
+      border-radius: 20px !important;
+      padding: 36px 48px !important;
+      margin-bottom: 64px !important;
+      box-shadow: 0 20px 55px rgba(0, 0, 0, 0.7), 0 0 30px rgba(234, 179, 8, 0.1) !important;
+    }
+
+    #section2 .banner-line1,
+    #section2 .banner-line2 {
+      font-size: clamp(1.35rem, 3vw, 1.9rem) !important;
+      color: #fde047 !important;
+      font-style: italic !important;
+      font-weight: 500 !important;
+      text-shadow: 0 0 30px rgba(253, 224, 71, 0.5), 0 2px 8px rgba(0, 0, 0, 0.7) !important;
+      line-height: 1.7 !important;
+    }
+
+    /* Things Rakii Says Grid — 2 columns */
+    #section2 .rakii-says-grid {
+      display: grid !important;
+      grid-template-columns: repeat(2, 1fr) !important;
+      gap: 20px !important;
+    }
+
+    @media (max-width: 700px) {
+      #section2 .rakii-says-grid {
+        grid-template-columns: 1fr !important;
+      }
+    }
+
+    /* Says Cards */
+    #section2 .rakii-say-card {
+      background: rgba(22, 10, 36, 0.92) !important;
+      border-radius: 22px !important;
+      padding: 30px 26px !important;
+      text-align: center !important;
+      backdrop-filter: blur(20px) !important;
+      position: relative !important;
+      overflow: hidden !important;
+    }
+
+    #section2 .rakii-say-card::before {
+      content: '' !important;
+      position: absolute !important;
+      top: 0;
+      left: 0;
+      right: 0 !important;
+      height: 3px !important;
+      border-radius: 22px 22px 0 0 !important;
+    }
+
+    #section2 .card-pink-glow {
+      border: 1.5px solid rgba(236, 72, 153, 0.4) !important;
+      box-shadow: 0 16px 45px rgba(0, 0, 0, 0.65), 0 0 25px rgba(236, 72, 153, 0.15) !important;
+    }
+
+    #section2 .card-pink-glow::before {
+      background: linear-gradient(90deg, transparent, #ec4899, transparent) !important;
+    }
+
+    #section2 .card-gold-glow {
+      border: 1.5px solid rgba(234, 179, 8, 0.4) !important;
+      box-shadow: 0 16px 45px rgba(0, 0, 0, 0.65), 0 0 25px rgba(234, 179, 8, 0.15) !important;
+    }
+
+    #section2 .card-gold-glow::before {
+      background: linear-gradient(90deg, transparent, #eab308, transparent) !important;
+    }
+
+    #section2 .card-blue-glow {
+      border: 1.5px solid rgba(14, 165, 233, 0.4) !important;
+      box-shadow: 0 16px 45px rgba(0, 0, 0, 0.65), 0 0 25px rgba(14, 165, 233, 0.15) !important;
+    }
+
+    #section2 .card-blue-glow::before {
+      background: linear-gradient(90deg, transparent, #0ea5e9, transparent) !important;
+    }
+
+    #section2 .card-purple-glow {
+      border: 1.5px solid rgba(168, 85, 247, 0.4) !important;
+      box-shadow: 0 16px 45px rgba(0, 0, 0, 0.65), 0 0 25px rgba(168, 85, 247, 0.15) !important;
+    }
+
+    #section2 .card-purple-glow::before {
+      background: linear-gradient(90deg, transparent, #a855f7, transparent) !important;
+    }
+
+    #section2 .say-tag {
+      font-size: 0.75rem !important;
+      font-weight: 700 !important;
+      letter-spacing: 0.14em !important;
+      text-transform: uppercase !important;
+      margin-bottom: 16px !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      gap: 6px !important;
+    }
+
+    #section2 .tag-pink {
+      color: #f472b6 !important;
+    }
+
+    #section2 .tag-gold {
+      color: #fde047 !important;
+    }
+
+    #section2 .tag-blue {
+      color: #38bdf8 !important;
+    }
+
+    #section2 .tag-purple {
+      color: #c084fc !important;
+    }
+
+    #section2 .say-quote {
+      font-size: clamp(1.25rem, 2.6vw, 1.6rem) !important;
+      font-style: italic !important;
+      font-weight: 600 !important;
+      color: #ffffff !important;
+      line-height: 1.45 !important;
+      margin-bottom: 14px !important;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5) !important;
+    }
+
+    #section2 .say-sub {
+      font-size: 0.88rem !important;
+      color: rgba(148, 163, 184, 0.9) !important;
+      text-align: center !important;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Dedicated Global Background Photo for Mobile & Desktop -->
+  <div class="global-bg-photo"></div>
+  <div class="global-bg-overlay"></div>
+
+  <!-- ========== BACKGROUND CANVAS ========== -->
+  <canvas id="particleCanvas"></canvas>
+
+  <!-- ========== FIRST PAGE: FUNNY & INTERACTIVE HAPPY BIRTHDAY GREETING CARD ========== -->
+  <section id="bdayGreetingSection" class="section full-screen hero-photo-bg">
+    <div class="stars-layer" id="starsLayer"></div>
+
+    <div class="greeting-card-container glow-border-gold">
+      <div class="funny-alert-badge">🚨 CRITICAL ALERT: 21ST BIRTHDAY DETECTED! 🚨</div>
+
+      <h1 class="funny-bday-title">HAPPY BIRTHDAY, RAKII! 🎉🌴</h1>
+      <p class="funny-bday-sub">Savanti • Lambu • Gubbe • Nayi • Karnataka's Tallest Legend 🦒</p>
+      <div class="bday-years-tag">✨ Celebrating 21 Years of Height &amp; Madness! ✨</div>
+
+
+
+      <!-- FUNNY INTERACTIVE MINI-TOOLS IN HERO -->
+      <div class="hero-interactive-zone">
+        <h3 class="hero-tools-title">⚡ Try Rakii's Interactive Hero Buttons ⚡</h3>
+        <div class="hero-btn-grid">
+          <button class="hero-mini-btn btn-roast" onclick="triggerHeightRoast()">
+            🦒 Generate Height Roast
+          </button>
+          <button class="hero-mini-btn btn-mood" onclick="spinMoodWheel()">
+            🎡 Spin Savanti Mood Wheel
+          </button>
+          <button class="hero-mini-btn btn-prank" onclick="triggerKulliPrank()">
+            🙋 Kulli Roast Counter (<span id="kulliCounterVal">108</span>)
+          </button>
+        </div>
+
+        <!-- Dynamic Output Box for Mini Tools -->
+        <div id="heroInteractiveOutput" class="hero-output-box hidden">
+          <div id="heroOutputText" class="hero-output-text"></div>
+        </div>
+      </div>
+
+      <div class="start-journey-wrap">
+        <button class="glow-btn pulse-glow" onclick="startOurJourney()">
+          🚀 Enter Friendship Story Archive! ✨
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SECTION 0: THE MYSTERIOUS INTRO ========== -->
+  <section id="opening" class="section full-screen theme-sapphire hidden">
+    <div class="opening-story-card">
+      <div class="story-date-badge">⚡ THE GREAT ENCOUNTER — 30TH JULY</div>
+
+      <div class="opening-content">
+        <h2 id="openingText1" class="opening-hero-title fade-text">It All Started With One Random Click... 🎙️</h2>
+
+        <div class="story-divider-glow"></div>
+
+        <p id="openingText2" class="opening-highlight-p fade-text delay-1">
+          Out of 8 billion people on planet Earth... 🌌
+        </p>
+
+        <p id="openingText3" class="opening-highlight-p fade-text delay-2">
+          Rakii was sitting alone in an empty Ace Fluency panel waiting for someone to join.
+        </p>
+
+        <div id="openingText4" class="opening-story-box fade-text delay-3">
+          <p class="box-primary">"No scripts. Zero expectations."</p>
+          <p class="box-secondary">I clicked 'Speaker Request' thinking: <em>"Let's see who this guy is..."</em> And
+            chaos was born! 😂</p>
+        </div>
+
+        <div id="openingText5" class="opening-turning-point fade-text delay-4">
+          <span>Before unlocking the archive, answer 1 question: 🍿</span>
+        </div>
+
+        <!-- Interactive Gatekeeper Choice -->
+        <div id="interactiveGate" class="interactive-gate-box fade-text delay-5">
+          <p class="gate-question">Who kills the enemy more in PUBG &amp; who is the bestRoaster?</p>
+          <div class="gate-options">
+            <button class="gate-btn btn-opt1" onclick="selectGateOption('kulli')">
+              👑 Kulli (Keerthana) — Obviously!
+            </button>
+            <button class="gate-btn btn-opt2" onclick="selectGateOption('rakii')">
+              🦒 Rakii(Savanti) — lambu always wins!
+            </button>
+          </div>
+          <div id="gateResult" class="gate-result-msg hidden"></div>
+        </div>
+
+        <div id="openingBtn" class="fade-text delay-5 hidden">
+          <button class="glow-btn pulse-glow story-discover-btn" onclick="revealJoined()">
+            ✨ Enter The Friendship Archive
+          </button>
+        </div>
+
+        <div id="joinedReveal" class="opening-joined hidden">
+          <div class="joined-steps-grid">
+            <div class="joined-step-chip"><span>🎙️</span> 1 Voice Room on Ace Fluency</div>
+            <div class="joined-step-chip"><span>💬</span> Infinite Masti, Roasts &amp; Kannadiga Vibe</div>
+            <div class="joined-step-chip"><span>❤️</span> 1 Truly Unbreakable Best Friendship</div>
+          </div>
+          <p class="golden-tagline">Welcome to Rakii's Birthday Experience! 🚀</p>
+          <div class="scroll-hint">↓ Scroll down to relive the memories</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SECTION 1: AND THEN WE MET (MIDNIGHT SAPPHIRE THEME) ========== -->
+  <section id="section1" class="section theme-sapphire reveal-section">
+    <div class="section-inner">
+      <h2 class="section-title">30th July, Evening —<br /><em>The Day Everything Started.</em></h2>
+
+      <div class="story-sequence">
+        <div class="story-block animate-in">
+          <div class="story-icon">📅</div>
+          <p>It was the evening of <strong>30th July.</strong> You created a panel on Ace Fluency. Nobody was there yet.
+          </p>
+        </div>
+        <div class="story-block animate-in delay-story-1">
+          <div class="story-icon">🌐</div>
+          <p>I joined your empty panel and sent a speaker request — not knowing what would happen next.</p>
+        </div>
+        <div class="story-block animate-in delay-story-2">
+          <div class="story-icon">✅</div>
+          <p>You accepted. And just like that, two complete strangers started talking.</p>
+        </div>
+        <div class="story-block animate-in delay-story-3">
+          <div class="story-icon">💬</div>
+          <p>The conversation started simply. And then we discovered something unexpected...</p>
+        </div>
+        <div class="story-block animate-in delay-story-4 highlight-block">
+          <div class="story-icon">🇮🇳</div>
+          <div class="highlight-block-content">
+            <div class="region-badge">✦ The Connection ✦</div>
+            <p>We were <strong>both from Karnataka.</strong><br />We both spoke <strong>Kannada.</strong></p>
+            <p class="sub-note">That one evening on 30th July turned a random online voice chat into something that
+              actually mattered. ❤️</p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Real Photos Showcase Row -->
+      <div class="photo-feature-row">
+        <div class="polaroid-card float-left"
+          onclick="openLightbox(this, 'Childhood Rider Era 🏍️', 'Cruising on the Bajaj Discover motorcycle since childhood! Legend born ready.')">
+          <div class="polaroid-frame">
+            <img src="images/rakii_photo_1.png" alt="Rakii Childhood Discover Bike" />
+          </div>
+          <div class="polaroid-caption">Childhood Discover Rider 🏍️</div>
+        </div>
+
+        <div class="center-badge-card">
+          <div class="badge-icon">🌅</div>
+          <div class="badge-title">30th July — Evening</div>
+          <p class="badge-sub">The day you created a panel & I joined.<br />The day it all began. ❤️</p>
+        </div>
+
+        <div class="polaroid-card float-right"
+          onclick="openLightbox(this, 'Royal Enfield Hunter 350 Rider 🏍️', 'Misty mountains, sunglasses & Royal Enfield Hunter 350. Savanti swagger!')">
+          <div class="polaroid-frame">
+            <img src="images/rakii_photo_3.png" alt="Rakii Royal Enfield Rider" />
+          </div>
+          <div class="polaroid-caption">Royal Enfield Rider (Age 21) 🏍️</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SECTION 2: THE NICKNAME BATTLE ========== -->
+  <section id="section2" class="section theme-amethyst nickname-battle-section reveal-section">
+    <div class="section-inner">
+      <h2 class="section-title nickname-battle-title">The Nickname Battle! ⚡</h2>
+
+      <!-- VS CARDS -->
+      <div class="nickname-battle-container">
+        <!-- RAKII CALLS ME -->
+        <div class="battle-card card-kulli">
+          <div class="battle-icon">👧</div>
+          <div class="battle-label">RAKII CALLS ME:</div>
+          <div class="battle-pills">
+            <span class="pill pill-pink">Kulli</span>
+            <span class="pill pill-pink">Bakridi</span>
+          </div>
+          <p class="battle-sub">My height = his favourite joke 🫣</p>
+        </div>
+
+        <!-- VS DIVIDER -->
+        <div class="battle-vs">
+          <span class="vs-flash">⚡</span>
+          <span class="vs-text">VS</span>
+          <span class="vs-flash">⚡</span>
+        </div>
+
+        <!-- I CALL RAKII -->
+        <div class="battle-card card-rakii">
+          <div class="battle-icon">🦒</div>
+          <div class="battle-label">I CALL RAKII:</div>
+          <div class="battle-pills">
+            <span class="pill pill-gold">Savanti</span>
+            <span class="pill pill-gold">Lambu</span>
+            <span class="pill pill-gold">Gubbe</span>
+            <span class="pill pill-gold">Nayi</span>
+            <span class="pill pill-gold">Gigantism</span>
+          </div>
+          <p class="battle-sub">And he loves every single one 🤣</p>
+        </div>
+      </div>
+
+      <!-- QUOTE BANNER -->
+      <div class="nickname-quote-banner">
+        <p class="banner-line1">"You call me short. I call you tall.</p>
+        <p class="banner-line2">And somehow that's the funniest friendship ever!" 😂 ❤️</p>
+      </div>
+
+      <!-- THINGS RAKII SAYS -->
+      <div class="rakii-says-wrap">
+        <h2 class="section-title rakii-says-title">😂 Things Rakii Says!</h2>
+
+        <div class="rakii-says-grid">
+          <!-- Card 1 -->
+          <div class="rakii-say-card card-pink-glow">
+            <div class="say-tag tag-pink">RAKII ALWAYS 🙋</div>
+            <blockquote class="say-quote">"Find a girl for me, please!"</blockquote>
+            <p class="say-sub">Every. Single. Conversation!</p>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="rakii-say-card card-gold-glow">
+            <div class="say-tag tag-gold">5 MINUTES LATER 🧘</div>
+            <blockquote class="say-quote">"Nah, I will follow Brahmachari!"</blockquote>
+            <p class="say-sub">Peak contradiction energy 😂</p>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="rakii-say-card card-blue-glow">
+            <div class="say-tag tag-blue">WHENEVER ANYTHING HAPPENS 💪</div>
+            <blockquote class="say-quote">"I am very strong, you know!"</blockquote>
+            <p class="say-sub">Hiding feelings with confidence 🗿</p>
+          </div>
+
+          <!-- Card 4 -->
+          <div class="rakii-say-card card-purple-glow">
+            <div class="say-tag tag-purple">HIS GREETING FOR ME 🙅</div>
+            <blockquote class="say-quote">"Hey Kulli! Hey Bakridi!"</blockquote>
+            <p class="say-sub">Daily without fail 🙈 😂</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SECTION 3: MASTI-MASAK ARCHIVE (CRIMSON THEME) ========== -->
+  <section id="section3" class="section theme-crimson reveal-section">
+    <div class="section-inner">
+      <h2 class="section-title">Serious Friendship? Absolutely Not. 😂</h2>
+      <p class="section-subtitle">Because apparently our friendship came with <em>unlimited masti-masak. (Click cards to
+          flip!)</em></p>
+
+      <div class="masti-grid">
+        <div class="masti-card-3d" onclick="flip3DCard(this)">
+          <div class="card-3d-inner">
+            <div class="card-3d-front">
+              <div class="masti-icon">🔥</div>
+              <h3>Free Fire Lobby Talks</h3>
+              <span class="click-hint">Tap to flip 🔄</span>
+            </div>
+            <div class="card-3d-back">
+              <p>Joining the game lobby just to gossip and teasing before even hitting start! 😂</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="masti-card-3d" onclick="flip3DCard(this)">
+          <div class="card-3d-inner">
+            <div class="card-3d-front">
+              <div class="masti-icon">🎮</div>
+              <h3>PUBG Sessions</h3>
+              <span class="click-hint">Tap to flip 🔄</span>
+            </div>
+            <div class="card-3d-back">
+              <p>Joining the ace fluency panel and playing game by giving terrible commentary!(I Know Iam the strongest
+                player in the team) 😂</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="masti-card-3d" onclick="flip3DCard(this)">
+          <div class="card-3d-inner">
+            <div class="card-3d-front">
+              <div class="masti-icon">🎲</div>
+              <h3>Talking about Girls</h3>
+              <span class="click-hint">Tap to flip 🔄</span>
+            </div>
+            <div class="card-3d-back">
+              <p>watching the girls from the top floor and saying that I'm
+                following Brahmachari 😂
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="masti-card-3d" onclick="flip3DCard(this)">
+          <div class="card-3d-inner">
+            <div class="card-3d-front">
+              <div class="masti-icon">🌙</div>
+              <h3>Late-Night Chats</h3>
+              <span class="click-hint">Tap to flip 🔄</span>
+            </div>
+            <div class="card-3d-back">
+              <p>Talking about our life serious decision as well as over night teasing 😂</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="masti-card-3d" onclick="flip3DCard(this)">
+          <div class="card-3d-inner">
+            <div class="card-3d-front">
+              <div class="masti-icon">😂</div>
+              <h3>Random Conversations</h3>
+              <span class="click-hint">Tap to flip 🔄</span>
+            </div>
+            <div class="card-3d-back">
+              <p>From discussing Food to deep life theories with guru savanti. as well as watching girls from top floor
+                🤣</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="masti-card-3d" onclick="flip3DCard(this)">
+          <div class="card-3d-inner">
+            <div class="card-3d-front">
+              <div class="masti-icon">🎓</div>
+              <h3>College Stories</h3>
+              <span class="click-hint">Tap to flip 🔄</span>
+            </div>
+            <div class="card-3d-back">
+              <p>Complaining about attendance, strict lecturers who took your phone in placement drive, and campus
+                madness.😂</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SECTION 4: CHAPTER FOUR — OFFICIAL AWARDS ========== -->
+  <section id="section4" class="section theme-amethyst awards-section reveal-section">
+    <div class="section-inner">
+      <!-- Chapter Subtitle Badge -->
+      <div class="chapter-badge">
+        <span class="chapter-icon">🏆</span>
+        <span class="chapter-title-text">Champion</span>
+      </div>
+
+      <!-- Main Section Title -->
+      <h2 class="awards-main-title">Official Awards! <span class="awards-medal-badge">🏅</span></h2>
+
+      <!-- Awards Cards Grid -->
+      <div class="awards-grid">
+        <!-- Card 1: Best Friend Award -->
+        <div class="award-card award-gold" onclick="claimAward(this, 'Best Friend Award 🥇')">
+          <div class="award-glow-dot glow-gold"></div>
+          <div class="award-icon">🥇</div>
+          <h3 class="award-title title-gold">Best Friend Award</h3>
+          <p class="award-desc">Most caring, Funny &amp; irreplaceable friend!</p>
+        </div>
+
+        <!-- Card 2: Makes Me Laugh Award -->
+        <div class="award-card award-pink" onclick="claimAward(this, 'Makes Me Laugh Award 😂')">
+          <div class="award-glow-dot glow-pink"></div>
+          <div class="award-icon">😂</div>
+          <h3 class="award-title title-pink">Makes Me Laugh Award</h3>
+          <p class="award-desc">Turns every bad mood into pure joy instantly!</p>
+        </div>
+
+        <!-- Card 3: Best Teaser Award -->
+        <div class="award-card award-purple" onclick="claimAward(this, 'Best Teaser Award 🦒')">
+          <div class="award-glow-dot glow-purple"></div>
+          <div class="award-icon">🦒</div>
+          <h3 class="award-title title-purple">Best Teaser Award</h3>
+          <p class="award-desc">"Kulli" &amp; "Bakridi" expert — 100% daily accuracy!</p>
+        </div>
+
+        <!-- Card 4: Good Listener Award -->
+        <div class="award-card award-cyan" onclick="claimAward(this, 'Good Listener Award 🎧')">
+          <div class="award-glow-dot glow-cyan"></div>
+          <div class="award-icon">🎧</div>
+          <h3 class="award-title title-cyan">Good Listener Award</h3>
+          <p class="award-desc">Patient listener &amp; life's best adviser!</p>
+        </div>
+
+        <!-- Card 5: Best Sports Person Award -->
+        <div class="award-card award-green" onclick="claimAward(this, 'Best Sports Person Award 🎯')">
+          <div class="award-glow-dot glow-green"></div>
+          <div class="award-icon">🎯</div>
+          <h3 class="award-title title-green">Best Sports Person Award</h3>
+          <p class="award-desc">PUBG, Free Fire &amp; Cricket Champion!</p>
+        </div>
+
+        <!-- Card 6: Best Irritator Award (Featured with glowing orange border) -->
+        <div class="award-card award-orange card-featured" onclick="claimAward(this, 'Best Irritator Award 🤪')">
+          <div class="award-glow-dot glow-orange"></div>
+          <div class="award-icon">🤪</div>
+          <h3 class="award-title title-orange">Best Irritator Award</h3>
+          <p class="award-desc">Undisputed playful irritation champion!</p>
+        </div>
+      </div>
+
+      <!-- Bottom Winner Banner -->
+      <div class="awards-winner-banner">
+        <span class="winner-emoji">🏅</span>
+        <span class="winner-text">Winner of ALL Awards: <strong>Rakii (Savanti) — Class of 21!</strong></span>
+        <span class="winner-emoji">🏅</span>
+      </div>
+    </div>
+  </section>
+
+
+
+
+  <!-- ========== SECTION 9: KANNADA SOUNDTRACK JUKEBOX ========== -->
+  <section id="section9" class="section theme-soundtrack reveal-section">
+    <div class="section-inner">
+      <h2 class="section-title">Kannada Soundtrack 🎵<br /><em>Play songs right here!</em></h2>
+      <p class="section-subtitle">Click any track below to play live audio &amp; video directly on your page 🎧</p>
+
+      <!-- Invisible Audio YouTube Embed -->
+      <div style="position:absolute; width:1px; height:1px; overflow:hidden; opacity:0; pointer-events:none;">
+        <iframe id="activeMusicFrame" width="1" height="1" src="" title="Kannada Song Audio" frameborder="0" allow="autoplay"></iframe>
+      </div>
+
+      <div class="jukebox-container">
+        <!-- Player Display Card -->
+        <div class="now-playing-card glow-border-gold">
+          <div class="disc-spin-wrap">
+            <div class="vinyl-disc" id="vinylDisc">&#x1F4BF;</div>
+          </div>
+          <div class="now-playing-info">
+            <span class="now-playing-badge" id="nowPlayingBadge">JUKEBOX READY</span>
+            <h3 id="nowPlayingTitle">Select a Kannada Song Below &#x1F3A7;</h3>
+            <p id="nowPlayingArtist">5 Curated Kannada Tracks for Rakii's Birthday</p>
+
+            <!-- Audio-Only Controls -->
+            <div class="audio-controls-wrap" style="display:flex; align-items:center; gap:14px; margin-top:18px; flex-wrap:wrap;">
+              <button id="ytPlayPauseBtn" onclick="ytTogglePlay()"
+                style="background:linear-gradient(135deg,#6b21a8,#312e81); border:2px solid #ffd700; color:#ffd700; font-size:1.4rem; width:50px; height:50px; border-radius:50%; cursor:pointer; transition:all 0.3s; flex-shrink:0;">
+                &#9654;
+              </button>
+              <button onclick="ytStop()"
+                style="background:rgba(15,23,42,0.8); border:1.5px solid rgba(255,215,0,0.4); color:#94a3b8; font-size:1.1rem; width:44px; height:44px; border-radius:50%; cursor:pointer; transition:all 0.3s; flex-shrink:0;" title="Stop Music">
+                &#9632;
+              </button>
+              <div id="ytStatusDot" style="width:12px; height:12px; border-radius:50%; background:#374151; transition:all 0.4s; flex-shrink:0;" title="Playing status"></div>
+            </div>
+
+            <!-- Equalizer Bars -->
+            <div class="equalizer-bars hidden" id="equalizer" style="margin-top: 16px;">
+              <span class="bar"></span><span class="bar"></span><span class="bar"></span><span class="bar"></span><span class="bar"></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Track List -->
+        <div class="track-list">
+          <div class="track-item" onclick="playKannadaTrack(1, 'Kavithe Kavithe 🎵', 'Yuva — Sanjith Hegde & Ajaneesh Loknath', 'QkvpPYxF5tE')">
+            <div class="track-num">01</div>
+            <div class="track-details">
+              <h4>Kavithe Kavithe 🎵</h4>
+              <p>Yuva &mdash; Sanjith Hegde &amp; B. Ajaneesh Loknath</p>
+            </div>
+            <button class="track-play-btn">&#9654; Play Song</button>
+          </div>
+
+          <div class="track-item" onclick="playKannadaTrack(2, 'Happy 😊', 'AllOk — Kannada Hit Album', 'hRkc-OPHApY')">
+            <div class="track-num">02</div>
+            <div class="track-details">
+              <h4>Happy 😊</h4>
+              <p>AllOk &mdash; Kannada Hit Album Track</p>
+            </div>
+            <button class="track-play-btn">&#9654; Play Song</button>
+          </div>
+
+          <div class="track-item" onclick="playKannadaTrack(3, 'Friendship 🤝', 'Lucky Man — Dr. Puneeth Rajkumar', 'sxnnOYqToIU')">
+            <div class="track-num">03</div>
+            <div class="track-details">
+              <h4>Friendship 🤝</h4>
+              <p>Lucky Man &mdash; Ee Namma Friendship Anthem</p>
+            </div>
+            <button class="track-play-btn">&#9654; Play Song</button>
+          </div>
+
+          <div class="track-item" onclick="playKannadaTrack(4, 'Lokada Kalaji 🌍', 'The Raghu Dixit Project', 'e4h0VoZpdI8')">
+            <div class="track-num">04</div>
+            <div class="track-details">
+              <h4>Lokada Kalaji 🌍</h4>
+              <p>The Raghu Dixit Project &mdash; Folk Classic</p>
+            </div>
+            <button class="track-play-btn">&#9654; Play Song</button>
+          </div>
+
+          <div class="track-item" onclick="playKannadaTrack(5, 'Nee Sigoovaregu 💫', 'Bhajarangi 2 — Sid Sriram', 'NEUh3spydPg')">
+            <div class="track-num">05</div>
+            <div class="track-details">
+              <h4>Nee Sigoovaregu 💫</h4>
+              <p>Bhajarangi 2 &mdash; Sid Sriram &amp; Arjun Janya</p>
+            </div>
+            <button class="track-play-btn">&#9654; Play Song</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SECTION 10: 21 YEARS OF RAKII PHOTO GALLERY (GOLDEN AMBER THEME) ========== -->
+  <section id="section10" class="section theme-amber reveal-section">
+    <div class="section-inner">
+      <h2 class="section-title">21 Years of Rakii ✨<br /><em>From Childhood to Now</em></h2>
+      <p class="section-subtitle">Click any photo frame to view full high-res photo & memory caption!</p>
+
+      <div class="gallery-grid">
+        <!-- Photo 1 -->
+        <div class="gallery-card-real"
+          onclick="openLightbox(this, 'Childhood Rider Era 🏍️', 'Cruising on the Bajaj Discover motorcycle since age 3! Legend born ready.')">
+          <div class="gallery-img-wrap">
+            <img src="images/rakii_photo_1.png" alt="Rakii Childhood Discover Bike" />
+          </div>
+          <div class="gallery-info">
+            <span class="photo-era-badge">Rakii 🌟</span>
+            <h4>Bajaj Discover Rider 🏍️</h4>
+            <p>Young Rakii riding outdoors</p>
+          </div>
+        </div>
+
+        <!-- Photo 2 -->
+        <div class="gallery-card-real"
+          onclick="openLightbox(this, 'Flower Garden & Teddy Bear Studio Pose 🌸', 'Cute toddler portrait with flowers and teddy bear! Studio model since childhood.')">
+          <div class="gallery-img-wrap">
+            <img src="images/rakii_photo_2.png" alt="Rakii Childhood Flowers" />
+          </div>
+          <div class="gallery-info">
+            <span class="photo-era-badge">savanti 🌟</span>
+            <h4>Flower Garden Pose 🌸</h4>
+            <p>Studio portrait with teddy bear</p>
+          </div>
+        </div>
+
+        <!-- Photo 3 -->
+        <div class="gallery-card-real"
+          onclick="openLightbox(this, 'Teen Era — Dotted White Shirt Selfie 📸', 'Looking sharp in the classic white shirt! Growing up era.')">
+          <div class="gallery-img-wrap">
+            <img src="images/rakii_photo_6.png" alt="Rakii Teen White Shirt" />
+          </div>
+          <div class="gallery-info">
+            <span class="photo-era-badge"> The Legend Himself😊</span>
+            <h4>Classic White Shirt 📸</h4>
+            <p>Younger selfie memories</p>
+          </div>
+        </div>
+
+        <!-- Photo 4 -->
+        <div class="gallery-card-real"
+          onclick="openLightbox(this, 'Teen Era — Blue Aviator Sunglasses Swagger 🕶️', 'Vibrant blue mirrored aviators on point! Peak confidence.')">
+          <div class="gallery-img-wrap">
+            <img src="images/rakii_photo_7.png" alt="Rakii Teen Sunglasses" />
+          </div>
+          <div class="gallery-info">
+            <span class="photo-era-badge">Maafia🥷</span>
+            <h4>Blue Shades Swagger 🕶️</h4>
+            <p>Summer sunglasses photo</p>
+          </div>
+        </div>
+
+        <!-- Photo 5 -->
+        <div class="gallery-card-real"
+          onclick="openLightbox(this, 'Teen Era — Stepwell Explorer 🏛️', 'Outdoor heritage trip posing on ancient stone steps!')">
+          <div class="gallery-img-wrap">
+            <img src="images/rakii_photo_8.png" alt="Rakii Stepwell" />
+          </div>
+          <div class="gallery-info">
+            <span class="photo-era-badge"> Innocent mood😇 </span>
+            <h4>Stepwell Explorer 🏛️</h4>
+            <p>Heritage stairs & travel memories</p>
+          </div>
+        </div>
+
+        <!-- Photo 6 -->
+        <div class="gallery-card-real"
+          onclick="openLightbox(this, '21st Year — Royal Enfield Hunter 350 Mountain Rider 🏔️', 'Royal Enfield Hunter 350, misty mountains, green jacket & sunglasses. Peak Savanti rider look!')">
+          <div class="gallery-img-wrap">
+            <img src="images/rakii_photo_3.png" alt="Rakii Royal Enfield Rider" />
+          </div>
+          <div class="gallery-info">
+            <span class="photo-era-badge highlight-badge">The Gigantism Era 🦒</span>
+            <h4>Royal Enfield Rider 🏍️</h4>
+            <p>Hunter 350 mountain ride</p>
+          </div>
+        </div>
+
+        <!-- Photo 7 -->
+        <div class="gallery-card-real"
+          onclick="openLightbox(this, '21st Year — Sleek Black Shirt Aesthetic 🖤', 'Standing tall & sleek leaning on the wall. Gigantism / Lambu official look! 😂')">
+          <div class="gallery-img-wrap">
+            <img src="images/rakii_photo_4.png" alt="Rakii Black Shirt" />
+          </div>
+          <div class="gallery-info">
+            <span class="photo-era-badge highlight-badge">Lambu pose 😅</span>
+            <h4>Black Shirt Aesthetic 🖤</h4>
+            <p>Official Lambu pose</p>
+          </div>
+        </div>
+
+        <!-- Photo 8 -->
+        <div class="gallery-card-real"
+          onclick="openLightbox(this, '21st Year — Happy Vibe Era ✨', 'Nature backdrop, maroon t-shirt with text HAPPY VIBE keep it real. True to himself!')">
+          <div class="gallery-img-wrap">
+            <img src="images/rakii_photo_5.png" alt="Rakii Happy Vibe" />
+          </div>
+          <div class="gallery-info">
+            <span class="photo-era-badge highlight-badge">Always that smile 👑</span>
+            <h4>Happy Vibe Era ✨</h4>
+            <p>Keep it real outdoor smile</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Lightbox Modal -->
+    <div id="lightbox" class="lightbox hidden" onclick="closeLightbox()">
+      <div class="lightbox-content" onclick="event.stopPropagation()">
+        <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+        <div id="lightboxImageContainer" class="lightbox-img-wrap"></div>
+        <h3 id="lightboxTitle"></h3>
+        <p id="lightboxCaption"></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SECTION 12: KANNADA KAVANA (MOONLIT KAVANA THEME WITH PHOTO 5 BG) ========== -->
+  <section id="section12" class="section theme-kavana reveal-section">
+    <div class="section-inner narrow">
+      <div class="kavana-card-container">
+        <h2 class="kavana-title">ಒಂದು ಚಿಕ್ಕ ಕವನ — ನಿನಗಾಗಿ ❤️</h2>
+        <p class="kavana-subtitle">
+          ಕೆಲವು ಸ್ನೇಹಗಳು ಹೇಗೆ ಶುರುವಾದವು ಎನ್ನುವುದಕ್ಕಿಂತ,<br />
+          ಅವು ನಮ್ಮ ಜೀವನದಲ್ಲಿ ಏನಾಗಿ ಉಳಿದವು ಎನ್ನುವುದೇ ಮುಖ್ಯ.
+        </p>
+
+        <button class="kavana-btn pulse-glow" onclick="revealKavana()">ಕವನವನ್ನು ಓದಿ ❤️</button>
+
+        <div id="kavanaPoem" class="kavana-poem hidden">
+          <div class="kavana-line kavana-final" data-delay="0">ಎಷ್ಟೇ ಕಷ್ಟ ಬಂದರೂ ಮುಗುಳುನಗುವ ಸರದಾರ,</div>
+          <div class="kavana-line kavana-final" data-delay="700">"ನಾನು ಸ್ಟ್ರಾಂಗ್" ಎಂದು ಹೇಳುತ್ತಾ ಭಾವನೆಗಳನ್ನು ಮರೆಮಾಡುವ
+            ಮಹಾನುಭಾವ,</div>
+          <div class="kavana-line kavana-final" data-delay="1400">ಮಾತುಗಳಲ್ಲಿ ಮಸ್ತಿ, ಹೃದಯದಲ್ಲಿ ನಿಷ್ಕಲ್ಮಶತೆ,</div>
+          <div class="kavana-line kavana-final" data-delay="2100">ಕಾಲೆಳೆಯುವ ಲಂಬು, ನಕ್ಕು ನಗಿಸುವ ನಮ್ಮ ಸಾವಂತಿ ❤️</div>
+          <div class="kavana-line kavana-final" data-delay="2800">ಅದಕ್ಕೇ ಈ ಪೀಸ್ಗೆ ರಿಪ್ಲೇಸ್ ಮೆಂಟೇ ಇಲ್ಲ 😂</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SECTION 15: THE LETTER ENVELOPE ========== -->
+  <section id="section15" class="section theme-sapphire reveal-section">
+    <div class="section-inner narrow">
+
+      <h2 class="section-title" style="margin-bottom:12px;">A Letter — Just For You 💌</h2>
+      <p class="section-subtitle" style="margin-bottom:48px;">Open it. It's been waiting. 🤫</p>
+
+      <!-- Premium Dark Envelope -->
+      <div class="envelope-container" id="envelopeContainer" onclick="openEnvelope()">
+        <div class="envelope-premium" id="envelope">
+          <!-- Wax Seal -->
+          <div class="wax-seal">✦</div>
+          <!-- Envelope Flap -->
+          <div class="env-flap" id="envelopeFlap"></div>
+          <!-- Body Content -->
+          <div class="env-body-content">
+            <div class="env-to-label">📜 &nbsp;FOR</div>
+            <div class="env-name">Rakii</div>
+            <div class="env-occasion">On His 21st Birthday</div>
+            <div class="env-hint">✨ Tap to open</div>
+          </div>
+          <!-- Decorative corner stars -->
+          <span class="env-corner env-corner-tl">✦</span>
+          <span class="env-corner env-corner-tr">✦</span>
+          <span class="env-corner env-corner-bl">✦</span>
+          <span class="env-corner env-corner-br">✦</span>
+        </div>
+      </div>
+
+      <!-- Premium Letter Content -->
+      <div id="letterContent" class="letter-content hidden">
+        <div class="letter-premium">
+          <!-- Letter Top Glow Bar -->
+          <div class="letter-top-bar"></div>
+
+          <div class="letter-inner">
+            <p class="letter-dear">Dear Rakii (Savanti / Lambu), 💛</p>
+
+            <div class="letter-body-simple">
+
+              <p>Happy 21st Birthday Savantiiiii!❤️</p>
+
+              <p>I genuinely don't know how to put into words what your friendship means to me. 🥹 The late-night talks,
+                the random roasts, the PUBG
+                game, the Free Fire lobbies where we talked more than we played — every single memory with you feels
+                like something I'd never trade for anything. 💫</p>
+
+              <p>You rebuilt my mental strength at a time when I needed it most. 💪🏼 You'd always say — <em>"Play
+                  games, enjoy with friends, don't feel bad, spend time with family"</em> — and even though you said it
+                so casually, it hit different every single time. That's something I'll carry with me forever. 🌟</p>
+
+              <p>You hold everything inside your beautiful heart and always choose to laugh or change the subject when
+                things get heavy — but I see you, Rakii. 🥺 That big, warm heart of yours is something truly one in a
+                million. You never let anyone feel alone, and that is such a rare, rare quality. 💝</p>
+
+              <p> I just want to tell you something from my side. 🥹❤️ I know you're an overthinker, and you have a
+                habit of keeping everything to yourself instead of sharing what's going on in your mind. Maybe you feel
+                like you can handle everything on your own, but sometimes, keeping everything inside can make your heart
+                feel so heavy. I'm not telling you to share everything with everyone, but at least try to open up to
+                someone you're close to and trust. You don't always have to pretend to be okay or deal with everything
+                alone. It's okay to talk about your feelings, it's okay to feel low sometimes, and it's okay to ask for
+                a little support. Please don't let your thoughts steal your happiness. Take things slowly, be kind to
+                yourself, and don't think too much about everything. I just want to see you happy, peaceful, and smiling
+                always. And remember, you don't have to carry everything alone. ❤️🫂</p>
+
+              <p>From calling me "Kulli, Bakridi" 😂 to listening to me at 2AM — you've been there through all of it.
+                Every laugh, every random talks, every pubg match (I'm the best player in your match🤣),every loose
+                talks or gossips in the lobby of the battle matches(Pubg,Free Fire ) makes me happy when i remember
+                those things. You gave me a lots of memories to carry forward🎵❤️</p>
+
+              <p>You are someone I'm SO grateful the universe let me meet. 🙏✨ 21 is just the beginning of the most
+                amazing chapter of your life — and I genuinely cannot wait to see you grow, make more memories, and
+                become everything you're meant to be. 🚀 May this year bring you every dream you've been quietly holding
+                onto — and may you never have to hold alone. 💛</p>
+
+            </div>
+
+            <div class="letter-signature-premium">
+              <div class="sig-line"></div>
+              <p class="sig-text">With loads of love &amp; all my kulli-sized heart,</p>
+              <p class="sig-name">— Krishiii 🥹💛 (Your Kulli, always!)</p>
+              <p class="sig-kannada">ಹ್ಯಾಪಿ ಬರ್ತ್ ಡೇ ರಾಕಿ 🎂✨</p>
+              <div class="sig-stars">✦ ✦ ✦</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========== FINAL SECTION: BIRTHDAY SURPRISE — CRICKET EDITION ========== -->
+  <section id="finalSection" class="section final-section">
+    <canvas id="fireworksCanvas"></canvas>
+
+    <div class="final-content">
+
+      <!-- Reveal wish text -->
+      <div class="birthday-display" id="birthdayDisplay">
+        <div class="final-wish" id="fl10">
+          May this year bring you more happiness,<br />
+          more adventures,<br />
+          more laughter,<br />
+          more unforgettable memories,<br />
+          and everything you've been working for.
+          Never Loose your smile (Naguvina Odeya)😊❤️
+        </div>
+      </div>
+
+      <!-- ===== BIRTHDAY CAKE SURPRISE — CRICKET EDITION ===== -->
+      <div class="cake-surprise-section" id="cakeSurpriseSection">
+
+        <!-- Title -->
+        <div class="cake-title-wrap">
+          <div class="cricket-badge">🏏 RAKII'S CRICKET EDITION 🏏</div>
+          <h2 class="cake-main-title" id="cakeMainTitle"> Happy Birthday, Lambu! 🦒</h2>
+          <p class="cake-main-sub">Close your eyes, make a wish in your heart & blow the candles... 🌟</p>
+        </div>
+
+        <!-- Realistic Cricket Birthday Cake Scene -->
+        <div class="cricket-cake-scene" id="cakeScene">
+
+          <!-- Candles Layer (5 Candles) -->
+          <div class="candles-row" id="candlesRow">
+            <div class="candle" id="candle0">
+              <div class="flame-wrap" id="flame0">
+                <div class="flame-outer"></div>
+                <div class="flame-inner-glow"></div>
+                <div class="smoke" id="smoke0"></div>
+              </div>
+              <div class="candle-stick c-red"></div>
+            </div>
+            <div class="candle" id="candle1">
+              <div class="flame-wrap" id="flame1">
+                <div class="flame-outer"></div>
+                <div class="flame-inner-glow"></div>
+                <div class="smoke" id="smoke1"></div>
+              </div>
+              <div class="candle-stick c-gold"></div>
+            </div>
+            <div class="candle" id="candle2">
+              <div class="flame-wrap" id="flame2">
+                <div class="flame-outer"></div>
+                <div class="flame-inner-glow"></div>
+                <div class="smoke" id="smoke2"></div>
+              </div>
+              <div class="candle-stick c-green"></div>
+            </div>
+            <div class="candle" id="candle3">
+              <div class="flame-wrap" id="flame3">
+                <div class="flame-outer"></div>
+                <div class="flame-inner-glow"></div>
+                <div class="smoke" id="smoke3"></div>
+              </div>
+              <div class="candle-stick c-gold"></div>
+            </div>
+            <div class="candle" id="candle4">
+              <div class="flame-wrap" id="flame4">
+                <div class="flame-outer"></div>
+                <div class="flame-inner-glow"></div>
+                <div class="smoke" id="smoke4"></div>
+              </div>
+              <div class="candle-stick c-red"></div>
+            </div>
+          </div>
+
+          <!-- Realistic Cricket Toppers SVG (Wickets, Bat, Leather Ball, Crease) -->
+          <div class="cake-cricket-toppers">
+            <svg viewBox="0 0 320 180" class="cricket-svg" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <!-- Wood Gradient for Wickets & Bat -->
+                <linearGradient id="woodGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stop-color="#8B5A2B" />
+                  <stop offset="35%" stop-color="#CD853F" />
+                  <stop offset="70%" stop-color="#DEB887" />
+                  <stop offset="100%" stop-color="#A0522D" />
+                </linearGradient>
+                <!-- Red Cricket Ball Gradient -->
+                <radialGradient id="ballGrad" cx="35%" cy="35%" r="65%">
+                  <stop offset="0%" stop-color="#ff6b6b" />
+                  <stop offset="40%" stop-color="#cc1111" />
+                  <stop offset="85%" stop-color="#7a0000" />
+                  <stop offset="100%" stop-color="#3d0000" />
+                </radialGradient>
+                <!-- Shadow Gradient -->
+                <radialGradient id="shadowGrad" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%" stop-color="rgba(0,0,0,0.6)" />
+                  <stop offset="100%" stop-color="rgba(0,0,0,0)" />
+                </radialGradient>
+              </defs>
+
+              <!-- Shadows under items -->
+              <ellipse cx="160" cy="165" rx="140" ry="12" fill="url(#shadowGrad)" />
+              <ellipse cx="235" cy="152" rx="22" ry="8" fill="url(#shadowGrad)" />
+
+              <!-- STUMPS / WICKETS -->
+              <g id="wickets">
+                <!-- Left Stump -->
+                <rect x="138" y="45" width="9" height="105" rx="3.5" fill="url(#woodGrad)" />
+                <!-- Middle Stump -->
+                <rect x="156" y="40" width="9" height="110" rx="3.5" fill="url(#woodGrad)" />
+                <!-- Right Stump -->
+                <rect x="174" y="45" width="9" height="105" rx="3.5" fill="url(#woodGrad)" />
+                <!-- Bails -->
+                <rect x="135" y="41" width="24" height="5" rx="2" fill="url(#woodGrad)" />
+                <rect x="162" y="36" width="24" height="5" rx="2" fill="url(#woodGrad)" />
+              </g>
+
+              <!-- CRICKET BAT (leaning in front) -->
+              <g id="cricketBat" transform="rotate(-32 120 120)">
+                <!-- Bat Handle -->
+                <rect x="117" y="10" width="10" height="48" rx="4" fill="#111" />
+                <!-- Rubber Grip Wraps -->
+                <line x1="117" y1="20" x2="127" y2="20" stroke="#f59e0b" stroke-width="2" />
+                <line x1="117" y1="30" x2="127" y2="30" stroke="#f59e0b" stroke-width="2" />
+                <line x1="117" y1="40" x2="127" y2="40" stroke="#f59e0b" stroke-width="2" />
+                <!-- Bat Blade -->
+                <path d="M 114 58 L 130 58 L 134 140 C 134 146 128 150 122 150 C 116 150 110 146 110 140 Z"
+                  fill="url(#woodGrad)" />
+                <!-- Colored sticker branding on bat -->
+                <rect x="113" y="65" width="18" height="35" rx="2" fill="#1e293b" />
+                <text x="122" y="86" font-size="10" font-weight="bold" fill="#FFC107" text-anchor="middle"
+                  font-family="sans-serif">MRF</text>
+              </g>
+
+              <!-- LEATHER CRICKET BALL -->
+              <g id="cricketBall">
+                <circle cx="230" cy="142" r="20" fill="url(#ballGrad)" />
+                <circle cx="230" cy="142" r="20" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="1" />
+                <!-- White Stitched Seam -->
+                <path d="M 213 132 C 224 136 236 148 247 152" fill="none" stroke="#ffffff" stroke-width="2.2"
+                  stroke-dasharray="3,2.5" />
+              </g>
+            </svg>
+          </div>
+
+          <!-- Cake Tiers (Green Turf Top Tier + Cream Base) -->
+          <div class="cricket-cake-top-tier">
+            <div class="pitch-crease-lines"></div>
+            <div class="gold-21-badge">21 🏆</div>
+          </div>
+          <div class="cricket-cake-bottom-tier">
+            <div class="grass-drips-bottom"></div>
+            <div class="cake-text-banner">HAPPY BIRTHDAY RAKII 🏏</div>
+          </div>
+          <div class="cake-plate-base"></div>
+        </div>
+
+        <!-- Wish System (Direct simplified flow) -->
+        <div class="wish-zone" id="wishZone">
+          <!-- Step 1: Click to Make Wish & Blow Candles -->
+          <div id="step1" class="wish-step">
+            <p class="wish-instruction">✨ Close your eyes, make a secret wish in your heart... ✨</p>
+            <button class="wish-btn btn-make-wish" id="makeWishBtn" onclick="blowCandles()">
+              🙏 Make a Wish &amp; Blow Candles! 🕯️
+            </button>
+          </div>
+
+          <!-- Step 2: Wish Granted Card (after candles blown out) -->
+          <div id="step3" class="wish-step hidden">
+            <div class="wish-granted-card">
+              <div class="wish-granted-glow">🏏✨</div>
+              <h3 class="wish-granted-title">Your Wish Has Been Sent to the Universe! 🌌</h3>
+              <p class="wish-granted-sub">It will be filled in the coming days — believe it, Lambu! 🦒💛</p>
+              <div class="wish-granted-text">
+                "May all your dreams, cricket match victories, health, and deepest desires come true this 21st year!
+                🏆❤️"
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Last Thought Card -->
+        <div class="last-thought-card" id="lastThoughtCard">
+          <div class="last-thought-divider">
+            <span>✦</span>
+            <div class="divider-line"></div><span>✦</span>
+          </div>
+          <div class="last-thought-icon">💌</div>
+          <p class="last-thought-body">
+            Today, I just wanted to create something that <em>celebrates you</em> and the friendship we share.
+            This is the <strong>small surprise from my side</strong> — thanks for everything! 🥹
+          </p>
+          <p class="last-thought-body">
+            Thanks for every laugh, every roast, every PUBG &amp; cricket match, every late-night conversation.
+            You deserve all the happiness in the world, Rakii. 💛
+          </p>
+          <p class="last-thought-sign">— from <strong>Krishiii</strong> 🥹💛</p>
+          <p class="last-thought-kannada">ಹ್ಯಾಪಿ ಬರ್ತ್‌ಡೇ ಲಂಬು ❤️</p>
+        </div>
+
+      </div><!-- end cake-surprise-section -->
+    </div><!-- end final-content -->
+
+    <!-- SECRET STAR -->
+    <div id="secretStar" class="secret-star hidden" onclick="revealSecret()" title="Click for a hidden PS message!">✦
+    </div>
+
+    <div id="secretMessage" class="secret-message hidden">
+      <div class="secret-inner glow-border">
+        <p>"PS: You made a website for my birthday."</p>
+        <br />
+        <p>"So obviously...<br />I couldn't just send you <em>'Happy Birthday'</em> and disappear. 😂"</p>
+        <br />
+        <p>"You created a memory for me."</p>
+        <p>"I wanted to create one for you too."</p>
+        <br />
+        <p class="secret-final">Happy Birthday, Savanti. 😂❤️</p>
+        <button onclick="closeSecret()" class="secret-close">Close ✕</button>
+      </div>
+    </div>
+  </section>
+  <script src="script.js"></script>
+</body>
+
+</html>
